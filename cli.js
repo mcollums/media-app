@@ -1,18 +1,20 @@
-var tv=require("./TV");
-var tvapp=new Tv();
-var choiceinput =process.argv[2];
-var name=process.argv.slice(3).join(" ");
+var tv = require("./TV");
+var tv = new TV();
+
+var choiceinput = process.argv[2];
+var name = process.argv.slice(3).join(" ");
+
 console.log(choiceinput, name);
-if(!choiceinput && !name){
-    console.log("Please enter your show \actor ");
+
+if (!choiceinput || !name) {
+    console.log("Please enter your show or actor ");
     return;
 }
-if(choiceinput==="show")
-{
-    tvapp.findShow(name);
-    console.log("Show");
-}
-else if(choiceinput==="actor"){
-    
-    console.log("Actor");
+
+if (choiceinput === "show") {
+    tv.findShow(name);
+    console.log("Show: " + name);
+} else if (choiceinput === "actor") {
+    tv.findActor(name);
+    console.log("Actor: " + name);
 }
