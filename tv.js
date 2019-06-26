@@ -1,6 +1,13 @@
 var axios = require('axios');
+var fs = require("fs");
 
+function output(info) {
+    console.log(info);
 
+    fs.appendFile("log.txt", info, function (err) {
+        console.log(err);
+    })
+}
 
 var TV = function () {
     this.findShow = function (show) {
@@ -11,11 +18,13 @@ var TV = function () {
             function (response) {
                 var obj = response.data;
                 console.log(obj);
-                console.log(`Show Name: ${obj.name}`);
-                console.log(`Genere: ${obj.generes}`);
-                console.log(`Average Rating: ${obj.rating.average}`);
-                console.log(`Network: ${obj.network.name}`);
-                console.log(`Summary: ${obj.summary}`);
+                output(`
+Show Name: ${response.data.name}
+Genres: ${response.data.genres.join(" ")}
+Network: ${response.data.network.name}
+Summary: ${response.data.summary}
+-----------------------------------
+`);
             })
             .catch(function (error) {
                 if (error.response) {
@@ -38,12 +47,12 @@ var TV = function () {
                 console.log(error.config);
             })
     }
-
+    this.findActor();
 };
 
 
 
-var tv = new TV();
-tv.findShow("Dexter");
+// var tv = new TV();
+// tv.findShow("Dexter");
 
 module.exports = TV;
