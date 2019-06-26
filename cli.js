@@ -1,5 +1,5 @@
 var tv=require("./TV");
-var tvapp=new tv();
+var tvapp=new Tv();
 var choiceinput =process.argv[2];
 var name=process.argv.slice(3).join(" ");
 console.log(choiceinput, name);
