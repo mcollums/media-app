@@ -1,4 +1,4 @@
-var tv=require("/TV");
+var tv=require("./TV");
 var tvapp=new tv();
 var choiceinput =process.argv[2];
 var name=process.argv.slice(3).join(" ");
